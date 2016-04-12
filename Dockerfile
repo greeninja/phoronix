@@ -9,7 +9,6 @@ RUN apt-get update \
     && wget http://phoronix-test-suite.com/releases/repo/pts.debian/files/phoronix-test-suite_6.2.1_all.deb \
     && dpkg -i phoronix-test-suite_6.2.1_all.deb \
     && rm -f phoronix-test-suite_6.2.1_all.deb
-RUN echo ynny | /usr/bin/phoronix-test-suite batch-setup
 ADD run.sh /run.sh
 RUN chmod a+x /run.sh
 ENV CODE 1234
