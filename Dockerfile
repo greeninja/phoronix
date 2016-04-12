@@ -12,5 +12,5 @@ RUN apt-get update \
 RUN echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf
 RUN sysctl -p
 RUN echo ynny | /usr/bin/phoronix-test-suite batch-setup
-ENTRYPOINT ["/usr/bin/phoronix-test-suite phoromatic.connect phoronix-benchmarks.perf-paas.fasthosts.net.uk:80/8RUWV1"]
+ENTRYPOINT /usr/bin/phoronix-test-suite,phoromatic.connect phoronix-benchmarks.perf-paas.fasthosts.net.uk:80/8RUWV1
 
