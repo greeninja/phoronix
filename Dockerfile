@@ -10,5 +10,5 @@ RUN apt-get update \
     && dpkg -i phoronix-test-suite_6.2.1_all.deb \
     && rm -f phoronix-test-suite_6.2.1_all.deb
 RUN echo ynny | /usr/bin/phoronix-test-suite batch-setup
-ENTRYPOINT /usr/bin/phoronix-test-suite phoromatic.connect phoronix-benchmarks.perf-paas.fasthosts.net.uk:80/8RUWV1
+ENTRYPOINT /usr/bin/phoronix-test-suite phoromatic.connect phoronix-benchmarks.perf-paas.fasthosts.net.uk:80/$CODE
 
