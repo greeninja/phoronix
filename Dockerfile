@@ -11,6 +11,7 @@ RUN apt-get update \
     && rm -f phoronix-test-suite_6.2.1_all.deb
 RUN echo ynny | /usr/bin/phoronix-test-suite batch-setup
 ADD run.sh /run.sh
+RUN CHMOD a+x /run.sh
 ENV CODE 1234
 ENTRYPOINT /run.sh
 
