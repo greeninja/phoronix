@@ -1,13 +1,13 @@
-FROM centos:latest
-MAINTAINER Nick Campion <nick.campion@fasthosts.com>
-RUN yum install -y php-cli git zlib-devel vim lsof php-xml php-devel patch make bzip2 gcc gcc-c++ automake glibc-static xdg-utils http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm; \
-    yum install -y php-pdo supervisor; \
-    git clone https://github.com/phoronix-test-suite/phoronix-test-suite.git; \
-    cd phoronix-test-suite/; \
-    bash install-sh;
-ADD phoronix-test-suite.xml /etc/phoronix-test-suite.xml
-ADD phoromatic.ini /etc/supervisord.d/phoromatic.ini
-ADD supervisord.conf /etc/supervisord.conf
-VOLUME ["/var/lib/phoronix-test-suite/installed-tests/pts/"]
-EXPOSE 80 8080 8088
-CMD ["supervisord"]
+FROM ubuntu:trusty
+MAINTAINER James Wilkins <james.wilkins@Fasthosts.co.uk>
+
+RUN apt-get update \
+    && apt-get -y install \
+          build-essential wget unzip perl perl-base perl-modules libsdl-perl \
+          libperl-dev libpcre3-dev mesa-utils php5-cli php5-gd php5-json \
+    && cd /tmp \
+    && wget http://phoronix-test-suite.com/releases/repo/pts.debian/files/phoronix-test-suite_6.0.1_all.deb \
+    && dpkg -i phoronix-test-suite_6.0.1_all.deb \
+    && rm -f phoronix-test-suite_6.0.1_all.deb
+ENTRYPOINT ["phoronix-test-suite"]
+
