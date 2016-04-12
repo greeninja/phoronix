@@ -8,5 +8,6 @@ RUN yum install -y php-cli git vim lsof php-xml php-devel patch make bzip2 gcc g
 ADD phoronix-test-suite.xml /etc/phoronix-test-suite.xml
 ADD phoromatic.ini /etc/supervisord.d/phoromatic.ini
 ADD supervisord.conf /etc/supervisord.conf
+VOLUME ["/var/lib/phoronix-test-suite/installed-tests/pts/"]
 EXPOSE 80 8080 8088
 CMD ["supervisord"]
