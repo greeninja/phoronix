@@ -9,5 +9,8 @@ RUN apt-get update \
     && wget http://phoronix-test-suite.com/releases/repo/pts.debian/files/phoronix-test-suite_6.0.1_all.deb \
     && dpkg -i phoronix-test-suite_6.0.1_all.deb \
     && rm -f phoronix-test-suite_6.0.1_all.deb
-ENTRYPOINT ["phoronix-test-suite phoromatic.connect phoronix-benchmarks.perf-paas.fasthosts.net.uk:80/8RUWV1"]
+RUN echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf
+RUN sysctl -p
+RUN echo ynny | /usr/bin/phoronix-test-suite batch-setup
+ENTRYPOINT ["/usr/bin/phoronix-test-suite phoromatic.connect phoronix-benchmarks.perf-paas.fasthosts.net.uk:80/8RUWV1"]
 
